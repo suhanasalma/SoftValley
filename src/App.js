@@ -1,23 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './Router/Route';
+import { useAuthCheck } from './Hooks/useAuthCheck';
 
 function App() {
+  const authChecking = useAuthCheck()
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        !authChecking &&<div>Loading</div>
+      }
+     {authChecking && <RouterProvider router={router} />}
     </div>
   );
 }

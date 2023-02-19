@@ -7,7 +7,7 @@ import { useAuthCheck } from './Hooks/useAuthCheck';
 function App() {
   const authChecking = useAuthCheck()
   return (
-    <div className="App">
+    <div className="">
       {
         !authChecking &&<div>Loading</div>
       }

@@ -5,7 +5,7 @@ import MoreLoginOptions from "../../Components/LoginComponent/MoreLoginOptions";
 
 const Login = () => {
   return (
-    <section className="bg-[#405189] h-screen ">
+    <section className="bg-[#405189] h-screen text-center">
       <section className="flex  justify-center items-center xl:w-9/12 w-11/12 mx-auto h-full ">
         <div className="px-4 py-12  sm:px-6 sm:py-16 w-full md:w-5/6 lg:px-8 lg:py-24  bg-white h-[600px]">
   

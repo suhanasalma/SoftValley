@@ -1,21 +1,20 @@
 import React from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useEditInfoMutation } from "../../../Redux/InformationApi/informationApi";
 
-const FilterCard = ({user}) => {
 
-  const [editInfo] = useEditInfoMutation()
-  // console.log(editInfo);
-  const dispatch = useDispatch()
+const FilterCard = ({user,setId,id}) => {
 
- 
-  const [id, setId] = useState([]);
 
   const handleId = (values) => {
-    setId([...id,values]);
-    editInfo({ source_id: id });
+    if(id.includes(values)){
+      setId( id.filter(i=>i!==values))
+      
+    }else{
+      setId([...id,values]);
+    }
+
+    // editInfo({ source_id: id });
   };
+
  
   return (
     <li
@@ -24,7 +23,7 @@ const FilterCard = ({user}) => {
     >
       <label htmlFor="user_id" className="inline-flex items-center gap-2">
         <input
-          onClick={() => handleId(user?.user_id ? user?.user_id : user?.id)}
+          onClick={() => handleId(user?.user_id ? user?.user_id : user?.id )}
           type="checkbox"
           id="user_id"
           className="w-5 h-5 border-gray-300 rounded"

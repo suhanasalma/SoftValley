@@ -16,16 +16,20 @@ const Dashboard = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(100);
   const [filterText, setFilterText] = useState("");
-  // const {} = response?.data?.data?.data
-  const { isLoading, data } = useGetInfoQuery({ page, perPage });
+  const [userIdAssign, setUserIdAssign]  = useState([]);
+  const [sourceId, setSourceId] = useState([]);
+  const [statusId, setStatusId] = useState([]);
+  const { isLoading, data } = useGetInfoQuery({ page, perPage,userIdAssign,sourceId ,statusId});
   const AssignResponse = useFetchAssignQuery();
   const sourseResponse = useFetchSourceQuery();
   const StatusResponse = useFetchStatusQuery();
+
+
   const handlePageChange = () => {};
 
   const handlePerRowsChange = () => {};
 
-  console.log(data?.data?.data);
+  // console.log(data?.data?.data);
 
   const columns = [
     {
@@ -74,7 +78,7 @@ const Dashboard = () => {
       selector: (row) => (
         <div>
           <p className={`text-[${row.status?.color}]`}>
-            {row.status?.name} {row.status?.color}
+            {row.status?.name}
           </p>
         </div>
       ),
@@ -136,7 +140,14 @@ const Dashboard = () => {
       },
     },
   };
-
+  const handleReset = ()=>{
+    setUserIdAssign([])
+    setStatusId([])
+    setSourceId([])
+ }
+ const handleFilter = ()=>{
+  console.log('filtr');
+ }
   return (
     <>
       <div className="px-10 py-3 bg-slate-100">
@@ -152,12 +163,12 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex items-center flex-wrap gap-5 my-10 mx-5">
-        <FilterCards name="Assigness" api={AssignResponse} />
-        <FilterCards name="Sources" api={sourseResponse} />
-        <FilterCards name="Statuses" api={StatusResponse} />
+        <FilterCards setId={setUserIdAssign} id={userIdAssign} name="Assigness" api={AssignResponse} />
+        <FilterCards setId={setSourceId} id={sourceId} name="Sources" api={sourseResponse} />
+        <FilterCards setId={setStatusId} id={statusId} name="Statuses" api={StatusResponse} />
         <input className="w-60 border-2 rounded-md p-1"  type="date"></input>
-        <Button text="Filter" classes="bg-[#405189] text-white" />
-        <Button text="Reset" classes="bg-white text-gray-400 border-2" />
+        <Button handleClick={handleFilter} text="Filter" classes="bg-[#405189] text-white" />
+        <Button handleClick={handleReset}  text="Reset" classes="bg-white text-gray-400 border-2" />
       </div>
       <DataTable
         fixedHeader={true}

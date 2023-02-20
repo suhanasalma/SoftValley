@@ -1,7 +1,7 @@
 import React from "react";
 import FilterCard from "./FilterCard";
 
-const FilterCards = ({ api, name }) => {
+const FilterCards = ({ api, name,setId,id }) => {
   const { data, isLoading, isSuccess } = api;
 //   console.log(data);
 
@@ -33,7 +33,7 @@ const FilterCards = ({ api, name }) => {
           <div className="bg-white border border-gray-200 rounded w-40 h-40 overflow-scroll">
             <ul className="p-4 space-y-1 border-t border-gray-200">
               {data?.data?.map((user, i) => (
-                <FilterCard user={user} key={i} />
+                <FilterCard setId={setId} id={id} user={user} key={i} />
               ))}
             </ul>
           </div>

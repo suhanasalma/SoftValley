@@ -44,7 +44,7 @@ const Sidebar = ({ open }) => {
       } lg:inline text-gray-600 `}
     >
       <div className="p-2">
-        <h1 className="text-3xl font-bold mb-5 hidden">Soft Valley</h1>
+        <h1 className="text-3xl font-bold mb-5  text-orange-500">Soft <span className="text-[#405189]">Valley</span> </h1>
         <div className="flex items-center gap-5">
           <div className="bg-slate-200 p-2 rounded-full">
             <FaUserPlus />
